@@ -2,3 +2,4 @@
 !/src/blocks/*
 !/src/robotgame/*
 /src/robotgame/MapInterpeter.java
+*.xml
