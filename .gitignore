@@ -3,3 +3,4 @@
 !/src/robotgame/*
 /src/robotgame/MapInterpeter.java
 *.xml
+*.class
