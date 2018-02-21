@@ -147,6 +147,7 @@ public class MapInterpreter extends Group {
 						break;
 
 					case 'L':
+						temp++;x++;
 					case 'D':
 					case 'K':
 						temp++;x++; // ignore the number after

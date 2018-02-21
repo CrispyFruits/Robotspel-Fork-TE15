@@ -25,6 +25,21 @@ public class LazerBlock extends Block{
             yDir = 1;
         }
 
+        else if(dir == 2){
+           xDir = -1;
+           yDir = 0;
+       }
+
+       else if(dir == 3){
+           xDir = 0;
+           yDir = -1;
+       }
+
+       else if(dir == 4){
+           xDir = 1;
+           yDir = 0;
+       }
+
         setOnMouseClicked(event->{
 
             turnOff();
@@ -41,7 +56,7 @@ public class LazerBlock extends Block{
                     s.setTranslateY(s.getTranslateY()+yDir);
                     s.setTranslateX(s.getTranslateX()+xDir);
 
-                    if(s.getTranslateX() < 0 || s.getTranslateY() > 313 ){ // TODO
+                    if(s.getTranslateX() < 0 || s.getTranslateY() > 313 ){ // TODO: fix so lazer stop on walls.
                         s = null;
                         shots.remove(i);
                         i--;
