@@ -18,6 +18,10 @@ public abstract class Block extends Group{
 		bg = new Rectangle(this.SQUARE_SIZE,this.SQUARE_SIZE);
 		bg.setFill(Color.TRANSPARENT);
 		this.getChildren().add(bg);
+
+		setOnMouseClicked(event->{
+			System.out.println(this.getClass().getSimpleName());
+		});
 	}
 	
 	public Rectangle getBackground(){

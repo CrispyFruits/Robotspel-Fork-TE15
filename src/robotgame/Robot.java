@@ -15,6 +15,8 @@ import javafx.scene.shape.Rectangle;
 
 public class Robot extends Group {
 
+	public static boolean gameOver = false;
+
 	private final double SQUARE_SIZE;
 	private AnimationTimer at;
 	private static int NUMBER_OF_ROBOTS = 0;
@@ -301,10 +303,17 @@ public class Robot extends Group {
 		boolean collision = collides(minX, minY, width, height);
 
 		if (collision) {
+			if (b instanceof KeyBlock) {
+				collect(b);
+				MapInterpreter.key.openDoor();
+				return false;
+			}
+
 			if (b instanceof Collectible) {
 				collect(b);
 				return false;
-			} else if (b instanceof Movable && moveObject == null) {
+			}
+			else if (b instanceof Movable && moveObject == null) {
 				moveObject = b;
 				System.out.println("MOVEABLE");
 				
@@ -347,17 +356,20 @@ public class Robot extends Group {
 
 	private boolean checkCollision(Node n) {
 
-		if (n == null || n.equals(this) || n instanceof NotCollidable) {
+		if (n == null || n.equals(this) || !n.isVisible() || n instanceof NotCollidable) {
 			return false; // Ignore n
 		}
 
-		if (n instanceof Block) {
+		if (n instanceof Block && !(n instanceof LazerBlock)) {
 			if(checkBlockCollision((Block) n)){
 				return true;
 			}
+
 		}  else if (n instanceof Parent) {
+
 			for (Node childNode : ((Parent) n).getChildrenUnmodifiable()) {
 				if (checkCollision(childNode)) {
+					gameOver = true;
 					return true;
 				}
 			}
@@ -422,6 +434,8 @@ public class Robot extends Group {
 	}
 
 }
+
+
 
 enum State {
 	BUSY, FREE
