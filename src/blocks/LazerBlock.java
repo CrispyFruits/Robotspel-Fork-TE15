@@ -12,14 +12,14 @@ public class LazerBlock extends Block{
     private int xDir;
     private int yDir;
 
-    private boolean on;
+    private boolean on = true;
 
     private ArrayList<LazerShot> shots = new ArrayList<LazerShot>();
 
     public LazerBlock(double square_size, int dir) {
         super(square_size);
         this.getBackground().setFill(Color.BLACK);
-       turnOn();
+
        if(dir == 1){
             xDir = 0;
             yDir = 1;
@@ -40,10 +40,10 @@ public class LazerBlock extends Block{
            yDir = 0;
        }
 
-        setOnMouseClicked(event->{
+       this.setOnMouseClicked(event -> this.turnOff());
 
-            turnOff();
-        });
+
+
 
         AnimationTimer shoot = new AnimationTimer() {
             @Override
@@ -51,25 +51,24 @@ public class LazerBlock extends Block{
                 if(on) {
                     shot();
                 }
+
+
                 for(int i = 0 ; i < shots.size() ; i++){
                     LazerShot s = shots.get(i);
                     s.setTranslateY(s.getTranslateY()+yDir);
                     s.setTranslateX(s.getTranslateX()+xDir);
 
-                    if(s.getTranslateX() < 0 || s.getTranslateY() > 313 ){ // TODO: fix so lazer stop on walls.
+                    if(s.getTranslateX() < 0 || s.getTranslateY() > 313 || !on){ // TODO: fix so lazer stop on walls.
                         s = null;
                         shots.remove(i);
                         i--;
 
                     }
-
-
-
-
-
-
                 }
+
+
             }
+
         };
 
         shoot.start();
@@ -79,6 +78,7 @@ public class LazerBlock extends Block{
 
     public void turnOff(){
         this.on = false;
+        this.getChildren().clear();
     }
 
     public void turnOn(){
@@ -90,6 +90,6 @@ public class LazerBlock extends Block{
         shots.add(shot);
         this.getChildren().add(shot);
 
-
     }
+
 }

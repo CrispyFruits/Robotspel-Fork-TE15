@@ -17,7 +17,7 @@ public class Main extends Application{
 		gameOverGroup = new Group(); //TODO: Create red text that says game over.
 		Group root = new MapInterpreter();
 
-		Scene scene = new Scene(root,1200,600);
+		Scene scene = new Scene(root,1079,539);
 		primaryStage.setScene(scene);
 		primaryStage.show();
 
@@ -33,7 +33,7 @@ public class Main extends Application{
 	}
 	private void checkGameOver(Stage primaryStage, Group gameOverGroup){
 		if(Robot.gameOver){
-			primaryStage.setScene(new Scene(gameOverGroup, 1200, 600));
+			primaryStage.setScene(new Scene(gameOverGroup, 1079, 539));
 			checkGameOverAT.stop();
 		}
 	}
