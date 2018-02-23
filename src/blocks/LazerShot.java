@@ -3,10 +3,7 @@ package blocks;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
-import robotgame.MapInterpreter;
-
 
 public class LazerShot extends Block{
     private double SQUARE_SIZE;
@@ -14,8 +11,8 @@ public class LazerShot extends Block{
     public LazerShot(double square_size){
         super(square_size);
         this.SQUARE_SIZE = square_size;
-        getBackground().setWidth(6);
-        getBackground().setHeight(1);
+        getBackground().setWidth(2);
+        getBackground().setHeight(2);
 
         getBackground().setFill(Color.RED);
 
@@ -51,7 +48,6 @@ public class LazerShot extends Block{
 
         if (n instanceof Block) {
             if(checkBlockCollision((Block) n)){
-
                 return true;
             }
         }

@@ -2,8 +2,6 @@ package blocks;
 
 import javafx.animation.AnimationTimer;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
-import robotgame.MapInterpreter;
 
 import java.util.ArrayList;
 
@@ -52,33 +50,28 @@ public class LazerBlock extends Block{
                     shot();
                 }
 
-
                 for(int i = 0 ; i < shots.size() ; i++){
                     LazerShot s = shots.get(i);
                     s.setTranslateY(s.getTranslateY()+yDir);
                     s.setTranslateX(s.getTranslateX()+xDir);
 
-                    if(s.getTranslateX() < 0 || s.getTranslateY() > 313 || !on){ // TODO: fix so lazer stop on walls.
+                    if( s.getTranslateY() > 313 || !on){
                         s = null;
                         shots.remove(i);
                         i--;
 
                     }
                 }
-
-
             }
-
         };
 
         shoot.start();
-
-
     }
 
     public void turnOff(){
         this.on = false;
         this.getChildren().clear();
+
     }
 
     public void turnOn(){
