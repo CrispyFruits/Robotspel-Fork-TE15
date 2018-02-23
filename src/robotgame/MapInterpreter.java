@@ -17,7 +17,7 @@ public class MapInterpreter extends Group {
 	public static ArrayList<Integer> keyValues = new ArrayList<>();
 	public  static ArrayList<Integer> doorValues = new ArrayList<>();
 	public static KeyBlock key;
-
+	public static ArrayList<LazerBlock> lbArray = new ArrayList<>();
 
 	public MapInterpreter() throws FileNotFoundException {
 
@@ -61,18 +61,21 @@ public class MapInterpreter extends Group {
 						keyCoords.add(Character.getNumericValue(blocks[x]));
 						break;
 
+					case 'E':
+						b = new EMP(SQUARE_SIZE);
+						break;
 
 					case 'D':
 						temp++;x++; // ignore the number after
 						doorCoords.add(x);
 						doorCoords.add(y);
-						//System.out.println((blocks[x]));
 						doorCoords.add(Character.getNumericValue(blocks[x]));
 						break;
 
 					case 'L':
 						temp++;x++;
 						b = new LazerBlock(SQUARE_SIZE,Character.getNumericValue(blocks[x]));
+						lbArray.add((LazerBlock) b);
 						break;
 
 					case 'G':
