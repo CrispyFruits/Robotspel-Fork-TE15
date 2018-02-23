@@ -309,6 +309,14 @@ public class Robot extends Group {
 				return false;
 			}
 
+			if(b instanceof EMP) {
+				collect(b);
+				for(int i = 0; i < MapInterpreter.lbArray.size(); ++i){
+					MapInterpreter.lbArray.get(i).turnOff();
+				}
+				return false;
+			}
+
 			if (b instanceof Collectible) {
 				collect(b);
 				return false;
